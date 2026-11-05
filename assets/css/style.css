@@ -121,7 +121,7 @@ p { margin: 0 0 1em; }
 .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero h1 { margin-bottom: .45em; }
 .hero h1 .accent { color: var(--lapis-700); font-style: italic; }
-.hero .lead { margin-bottom: 1em; }
+.hero .lead { margin-bottom: 1.8em; }
 .hero .sub { color: var(--muted); max-width: 60ch; margin-bottom: 1.8em; }
 .hero-points { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .95rem; color: var(--muted); }
 .hero-points li { display: inline-flex; align-items: center; gap: 8px; }
