@@ -1,0 +1,18 @@
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Afgeschafte dienst: permanent doorsturen naar het dienstenoverzicht (geen gebroken links)
+RewriteRule ^diensten/sales-crm-klantenservice/?$ /diensten/ [R=301,L]
+# Afsluitende slash voor mappen
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
