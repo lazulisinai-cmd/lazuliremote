@@ -1,0 +1,31 @@
+# Publiceert de map public/ naar de branch "deploy".
+# Hostinger deployt die branch automatisch naar lazuliremote.com.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+    paths: ["public/**", ".github/workflows/publish-site.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-site
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push public/ to deploy branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git subtree split --prefix public -b deploy
+          git push origin deploy
