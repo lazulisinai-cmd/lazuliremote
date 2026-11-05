@@ -437,8 +437,7 @@ const page = (p) => pages.push(p);
     <div>
       <p class="eyebrow">Virtuele assistent · Nederland &amp; België</p>
       <h1 id="hero-title">Jouw rechterhand. <span class="accent">Waar je ook onderneemt.</span></h1>
-      <p class="lead">Professionele virtual assistance en business support voor zelfstandigen, ondernemers en kleine bedrijven in Nederland en België.</p>
-      <p class="sub">Van administratie en e-mailbeheer tot managementondersteuning, planning en reserveringen. Lazuli Remote neemt organisatorische en administratieve taken uit handen, zodat jij je kunt concentreren op wat écht belangrijk is: jouw onderneming.</p>
+      <p class="lead">Even geen gedoe meer met je inbox, agenda of administratie. Ik neem het graag van je over, zodat jij tijd overhoudt voor je onderneming. Voor zelfstandigen en kleine bedrijven in Nederland en België.</p>
       <div class="btn-row">
         <a class="btn btn--primary" href="/contact/">${CTA_PRIMARY}</a>
         <a class="btn btn--ghost" href="/diensten/">${CTA_SECONDARY}</a>
