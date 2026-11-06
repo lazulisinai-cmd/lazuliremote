@@ -56,7 +56,7 @@ const SERVICES = [
   },
 ];
 
-// ─── Tarieven (excl. btw) ────────────────────────────────────────────────────
+// ─── Tarieven (incl. btw) ────────────────────────────────────────────────────
 const PLANS = [
   { name: "Pakket A", hours: 16, amount: 784, items: ["Ongeveer 4 uur per week", "Betaling per maand vooraf", "Werkzaamheden in overleg", "Gratis kennismakingsgesprek"] },
   { name: "Pakket B", hours: 24, amount: 1128, items: ["Ongeveer 6 uur per week", "Betaling per maand vooraf", "Werkzaamheden in overleg", "Gratis kennismakingsgesprek"], highlight: true },
@@ -300,8 +300,8 @@ page({
       name: "Diensten en tarieven Lazuli Remote",
       itemListElement: [
         ...SERVICES.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, description: s.short, provider: { "@id": SITE.url + "/#organisatie" } } })),
-        ...PLANS.map((p) => ({ "@type": "Offer", name: `${p.name}, ${p.hours} uur per maand`, price: p.amount, priceCurrency: "EUR", valueAddedTaxIncluded: false })),
-        { "@type": "Offer", name: HOURLY.name, price: HOURLY.amount, priceCurrency: "EUR", valueAddedTaxIncluded: false },
+        ...PLANS.map((p) => ({ "@type": "Offer", name: `${p.name}, ${p.hours} uur per maand`, price: p.amount, priceCurrency: "EUR", valueAddedTaxIncluded: true })),
+        { "@type": "Offer", name: HOURLY.name, price: HOURLY.amount, priceCurrency: "EUR", valueAddedTaxIncluded: true },
       ],
     },
   ],
@@ -333,7 +333,7 @@ page({
       <div class="plan-head"><h3>${p.name}</h3><p class="plan-tag">${p.hours} uur per maand</p></div>
       <div class="plan-body">
         <p class="plan-amount"><span class="cur">€</span>${euro(p.amount)}</p>
-        <p class="plan-unit">per maand excl. btw</p>
+        <p class="plan-unit">per maand</p>
         <ul class="dash-list">${p.items.map((i) => `<li>${i}</li>`).join("")}</ul>
         <a class="btn ${p.highlight ? "btn--primary" : "btn--ghost"}" href="#kennismaken">Neem contact op<span class="sr-only"> over ${p.name}</span></a>
       </div>
@@ -341,12 +341,16 @@ page({
   </div>
   <article class="plan plan--hourly">
     <div class="plan-head"><h3>${HOURLY.name}</h3><p class="plan-tag">Ondersteuning wanneer nodig</p></div>
-    <div class="hourly-price"><p class="plan-amount"><span class="cur">€</span>${HOURLY.amount}</p><p class="plan-unit">per uur excl. btw</p></div>
+    <div class="hourly-price"><p class="plan-amount"><span class="cur">€</span>${HOURLY.amount}</p><p class="plan-unit">per uur</p></div>
     <ul class="dash-list">${HOURLY.items.map((i) => `<li>${i}</li>`).join("")}</ul>
     <a class="btn btn--ghost" href="#kennismaken">Neem contact op<span class="sr-only"> over het losse uurtarief</span></a>
   </article>
+  <div class="vat-notes">
+    <p class="vat-main">Alle bedragen zijn inclusief btw.</p>
+    <p>Nultarief voor de uitvoer van diensten overeenkomstig de Egyptische btw-wet nr. 67/2016, mits aan de toepasselijke voorwaarden wordt voldaan.</p>
+    <p>Btw verlegd (reverse charge) — De btw moet door de afnemer van de diensten worden aangegeven en afgedragen overeenkomstig artikel 196 van de Europese Richtlijn 2006/112/EG.</p>
+  </div>
   <ul class="price-notes">
-    <li>Alle bedragen zijn exclusief btw</li>
     <li>Pakketten betaal je per maand vooraf</li>
     <li>Losse uren factureer ik achteraf, te betalen binnen 14 dagen</li>
     <li>Werkzaamheden stemmen we altijd samen af</li>
