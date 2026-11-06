@@ -29,15 +29,21 @@
   var form = document.getElementById("contact-form");
   if (!form) return;
 
-  // Dienst vooraf selecteren via ?dienst=<slug> (links vanaf dienstpagina's)
+  // Terugkoppeling na verzenden (contact.php stuurt terug met ?verzonden=1 of ?fout=1)
   try {
-    var dienst = new URLSearchParams(window.location.search).get("dienst");
-    var select = form.querySelector("#dienst");
-    if (dienst && select) {
-      var opt = select.querySelector('option[data-slug="' + dienst.replace(/[^a-z-]/g, "") + '"]');
-      if (opt) select.value = opt.value;
+    var params = new URLSearchParams(window.location.search);
+    var status = document.getElementById("form-status");
+    if (status && (params.has("verzonden") || params.has("fout"))) {
+      var ok = params.has("verzonden");
+      status.textContent = ok
+        ? "Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op om een kennismakingsgesprek in te plannen."
+        : "Je bericht kon niet worden verzonden. Controleer de velden en probeer het opnieuw.";
+      status.className = "form-status " + (ok ? "form-status--ok" : "form-status--error");
+      status.hidden = false;
+      if (ok) form.hidden = true;
+      if (window.history.replaceState) window.history.replaceState(null, "", window.location.pathname + "#kennismaken");
     }
-  } catch (e) { /* oude browsers: geen voorselectie */ }
+  } catch (e) { /* oude browsers: geen melding */ }
 
   function setError(field, msg) {
     var el = form.querySelector("#" + field.id + "-error");

@@ -1,44 +1,38 @@
 <?php
-// Lazuli Remote — verwerking contactformulier (PHP-hosting, bv. Hostinger)
-// TODO: stel het ontvangende adres in.
+// Lazuli Remote — verwerking kennismakingsformulier (PHP-hosting, bv. Hostinger)
+// TODO: vul hier het geverifieerde zakelijke e-mailadres in waarop aanvragen binnenkomen.
 const RECIPIENT = 'info@lazuliremote.com';
-const ALLOWED_SERVICES = [
-    'Administratie & e-mailbeheer',
-    'Executive Assistant & managementondersteuning',
-    'Planning & operationele coördinatie',
-    'Reisorganisatie & reserveringen',
-    'Hospitality & reserveringsbeheer',
-    'Andere ondersteuning',
-];
+const BACK = '/diensten-tarieven/';
+
+function back(string $query): void {
+    header('Location: ' . BACK . '?' . $query . '#kennismaken', true, 303);
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /contact/', true, 303);
+    header('Location: ' . BACK . '#kennismaken', true, 303);
     exit;
 }
 
 // Honeypot: bots vullen dit veld in
 if (!empty($_POST['website'])) {
-    header('Location: /contact/bedankt/', true, 303);
-    exit;
+    back('verzonden=1');
 }
 
 $clean = fn($v) => trim(str_replace(["\r", "\n"], ' ', (string)($v ?? '')));
-$naam     = $clean($_POST['naam'] ?? '');
-$bedrijf  = $clean($_POST['bedrijf'] ?? '');
-$email    = $clean($_POST['email'] ?? '');
-$telefoon = $clean($_POST['telefoon'] ?? '');
-$dienst   = $clean($_POST['dienst'] ?? '');
-$bericht  = trim((string)($_POST['bericht'] ?? ''));
-$privacy  = ($_POST['privacy'] ?? '') === 'ja';
+$naam    = mb_substr($clean($_POST['naam'] ?? ''), 0, 120);
+$email   = mb_substr($clean($_POST['email'] ?? ''), 0, 200);
+$bedrijf = mb_substr($clean($_POST['bedrijf'] ?? ''), 0, 160);
+$bericht = mb_substr(trim((string)($_POST['bericht'] ?? '')), 0, 5000);
+$privacy = ($_POST['privacy'] ?? '') === 'ja';
 
-if ($naam === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || !in_array($dienst, ALLOWED_SERVICES, true) || $bericht === '' || !$privacy) {
-    header('Location: /contact/?fout=1', true, 303);
-    exit;
+if ($naam === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $bericht === '' || !$privacy) {
+    back('fout=1');
 }
 
-$body = "Nieuwe aanvraag via lazuliremote.com\n\n"
-      . "Naam: $naam\nBedrijf: $bedrijf\nE-mail: $email\nTelefoon: $telefoon\n"
-      . "Ondersteuning: $dienst\n\nBericht:\n$bericht\n";
+$body = "Nieuwe kennismakingsaanvraag via lazuliremote.com\n\n"
+      . "Naam: $naam\nE-mail: $email\nBedrijf: " . ($bedrijf !== '' ? $bedrijf : '-') . "\n\n"
+      . "Waarmee kan ik je helpen?\n$bericht\n";
 
 $headers = [
     'From: Lazuli Remote website <' . RECIPIENT . '>',
@@ -46,7 +40,6 @@ $headers = [
     'Content-Type: text/plain; charset=UTF-8',
 ];
 
-@mail(RECIPIENT, '=?UTF-8?B?' . base64_encode("Kennismakingsaanvraag: $dienst") . '?=', $body, implode("\r\n", $headers));
+$sent = @mail(RECIPIENT, '=?UTF-8?B?' . base64_encode("Kennismakingsaanvraag van $naam") . '?=', $body, implode("\r\n", $headers));
 
-header('Location: /contact/bedankt/', true, 303);
-exit;
+back($sent ? 'verzonden=1' : 'fout=1');
