@@ -414,13 +414,6 @@ page({
     <p>In mijn professionele loopbaan heb ik ervaring opgebouwd met administratie, planning, managementondersteuning en commerciële opvolging.</p>
     <p>Met Lazuli Remote zet ik die ervaring vandaag in voor ondernemers die behoefte hebben aan een ervaren rechterhand op afstand.</p>
   </div>
-  <div class="about-intro-wrap">
-    <div class="exp-card">
-      <span class="big">15</span>
-      <span class="big-sub">jaar ervaring</span>
-      <p class="exp-motto"><span>Jouw onderneming.</span> <span>Mijn ervaring.</span> <span>Samen vooruit.</span></p>
-    </div>
-  </div>
 </div></section>
 
 <section class="section" aria-labelledby="aanpak-title"><div class="wrap approach">
