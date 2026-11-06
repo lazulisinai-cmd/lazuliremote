@@ -762,17 +762,10 @@ ${ctaBand("Benieuwd welk pakket bij je past?", "Plan een gratis kennismakingsges
     body: `
 <section class="page-hero"><div class="wrap">
   ${bc.html}
-  <div class="about-hero">
-    <div>
-      <p class="eyebrow">Over mij</p>
-      <h1>De rechterhand achter Lazuli Remote</h1>
-      <p class="lead">Ik help zelfstandigen, ondernemers en kleine bedrijven om overzicht en rust te creëren in hun werkdag, zodat zij zich kunnen richten op hun onderneming.</p>
-      <div class="btn-row"><a class="btn btn--primary" href="/contact/">${CTA_PRIMARY}</a></div>
-    </div>
-    <figure class="about-photo">
-      <img src="${v("/assets/img/lazuli-remote-over-mij.webp")}" width="1122" height="1402" alt="Portret van de oprichter van Lazuli Remote, met het logo, de slogan 'Jouw rechterhand, waar je ook onderneemt' en illustraties van werken op afstand." fetchpriority="high">
-    </figure>
-  </div>
+  <p class="eyebrow">Over mij</p>
+  <h1>De rechterhand achter Lazuli Remote</h1>
+  <p class="lead">Ik help zelfstandigen, ondernemers en kleine bedrijven om overzicht en rust te creëren in hun werkdag, zodat zij zich kunnen richten op hun onderneming.</p>
+  <div class="btn-row"><a class="btn btn--primary" href="/contact/">${CTA_PRIMARY}</a></div>
 </div></section>
 <section class="section"><div class="wrap split split--wide">
   <div class="prose">
@@ -784,17 +777,9 @@ ${ctaBand("Benieuwd welk pakket bij je past?", "Plan een gratis kennismakingsges
     <h2>Ervaring</h2>
     <p>Met ervaring in administratieve ondersteuning, managementondersteuning, planning en de reis- en hospitalitysector weet ik wat ondernemers nodig hebben om hun werkdag soepel te laten verlopen.</p>
   </div>
-  <aside class="panel" aria-labelledby="kern-title">
-    <h2 id="kern-title" style="font-size:1.4rem">In het kort</h2>
-    <ul class="check-list">
-      <li>Freelance virtual assistant</li>
-      <li>Ondersteuning in Nederland &amp; België</li>
-      <li>Nederlands en Engels</li>
-      <li>Discreet en AVG-bewust</li>
-      <li>Gespecialiseerd in administratie, executive support, planning, reisorganisatie en hospitality</li>
-    </ul>
-    <a class="btn btn--primary" href="/contact/">Plan een kennismaking</a>
-  </aside>
+  <figure class="about-photo">
+    <img src="${v("/assets/img/lazuli-remote-over-mij.webp")}" width="1122" height="1402" alt="Portret van de oprichter van Lazuli Remote, met het logo, de slogan &#39;Jouw rechterhand, waar je ook onderneemt&#39; en illustraties van werken op afstand." loading="lazy">
+  </figure>
 </div></section>
 <section class="section section--tint" aria-labelledby="waarden-title"><div class="wrap">
   <h2 id="waarden-title">Waar ik voor sta</h2>
