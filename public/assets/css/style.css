@@ -312,3 +312,17 @@ p { margin: 0 0 1em; }
   .site-header .logo { font-size: 1.18rem; }
   .site-header .logo svg { width: 30px; height: 30px; }
 }
+
+/* Ervaringskaart: motto */
+.exp-card .exp-motto { margin: 0; padding-top: 20px; border-top: 1px solid rgba(201, 162, 58, .35); font-family: var(--font-hand); font-size: clamp(1.55rem, 3vw, 1.85rem); line-height: 1.25; color: var(--gold-soft); }
+.exp-card .exp-motto span { display: block; }
+
+/* WhatsApp-knop (zwevend, rechtsonder) */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 20px 0 16px; border-radius: 999px; background: #25d366; color: #0b1638; font-weight: 600; text-decoration: none; box-shadow: 0 6px 20px rgba(11, 22, 56, .25); transition: transform .2s, box-shadow .2s; }
+.wa-float:hover { color: #0b1638; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(11, 22, 56, .3); }
+.wa-float svg { width: 26px; height: 26px; }
+@media (max-width: 640px) {
+  .wa-float { right: 14px; bottom: 14px; width: 56px; padding: 0; justify-content: center; }
+  .wa-float .wa-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+}
+.site-footer { padding-bottom: 88px; }
