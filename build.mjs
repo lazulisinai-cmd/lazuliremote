@@ -2,12 +2,15 @@
 // Gebruik:  node build.mjs   → schrijft alle HTML-pagina's, sitemap.xml en robots.txt naar ./public
 // Alle teksten staan in dit bestand; pas ze hier aan en draai het script opnieuw.
 
-import { mkdirSync, writeFileSync, rmSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const OUT = join(ROOT, "public");
+// Versielabel per bestand (hash van de inhoud): na elke wijziging halen browsers de nieuwe versie op.
+const v = (p) => p + "?v=" + createHash("md5").update(readFileSync(join(OUT, p))).digest("hex").slice(0, 8);
 
 // ─── Instellingen ────────────────────────────────────────────────────────────
 // TODO: vervang door het definitieve domein en contactgegevens.
@@ -405,7 +408,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="${v("/assets/css/style.css")}">
 ${[ORG, ...ld].map(jsonLd).join("\n")}
 </head>
 <body>
@@ -447,7 +450,7 @@ ${body}
     </div>
   </div>
 </footer>
-<script src="/assets/js/main.js" defer></script>
+<script src="${v("/assets/js/main.js")}" defer></script>
 </body>
 </html>
 `;
@@ -767,7 +770,7 @@ ${ctaBand("Benieuwd welk pakket bij je past?", "Plan een gratis kennismakingsges
       <div class="btn-row"><a class="btn btn--primary" href="/contact/">${CTA_PRIMARY}</a></div>
     </div>
     <figure class="about-photo">
-      <img src="/assets/img/lazuli-remote-over-mij.webp" width="1122" height="1402" alt="Portret van de oprichter van Lazuli Remote, met het logo, de slogan 'Jouw rechterhand, waar je ook onderneemt' en illustraties van werken op afstand." fetchpriority="high">
+      <img src="${v("/assets/img/lazuli-remote-over-mij.webp")}" width="1122" height="1402" alt="Portret van de oprichter van Lazuli Remote, met het logo, de slogan 'Jouw rechterhand, waar je ook onderneemt' en illustraties van werken op afstand." fetchpriority="high">
     </figure>
   </div>
 </div></section>
