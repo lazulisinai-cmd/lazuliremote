@@ -1,5 +1,5 @@
-/* Lazuli Remote — huisstijl v3
-   Navy & warm goud op zand en ivoor. Playfair Display + Inter. */
+/* Lazuli Remote — huisstijl
+   Lapisblauw met gouden accenten. Fraunces + Inter. */
 
 :root {
   --navy: #0b1638;
@@ -15,7 +15,7 @@
   --line: #e2e5ee;
   --white: #ffffff;
 
-  --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-head: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-hand: "Caveat", "Segoe Script", cursive;
 
@@ -79,9 +79,9 @@ p { margin: 0 0 1em; }
 /* Header */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(251, 250, 247, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
-.logo { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; white-space: nowrap; }
-.logo .logo-name { font-family: var(--font-head); font-weight: 600; font-size: 1.32rem; letter-spacing: .14em; color: var(--navy); }
-.logo .logo-sub { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-text); margin-top: 5px; font-weight: 600; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-family: var(--font-head); font-weight: 600; font-size: 1.3rem; letter-spacing: -.01em; white-space: nowrap; line-height: 1; }
+.logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+.logo em { font-style: normal; color: var(--gold-text); }
 .nav-wrap { display: flex; align-items: center; gap: 8px; }
 .main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
 .main-nav a { display: block; padding: 10px 14px; border-radius: 8px; color: var(--charcoal); text-decoration: none; font-weight: 500; font-size: .97rem; }
@@ -295,9 +295,10 @@ p { margin: 0 0 1em; }
 /* Footer */
 .site-footer { background: var(--navy); color: #b9c3d3; padding: clamp(40px, 6vw, 60px) 0 24px; font-size: .95rem; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 32px; }
-.site-footer .logo-name { color: #fff; }
-.site-footer .logo-sub { color: var(--gold); }
-.footer-tagline { font-family: var(--font-head); font-style: italic; color: var(--gold-soft); margin: 14px 0 0; }
+.site-footer .logo { color: #fff; }
+.site-footer .logo em { color: var(--gold-soft); }
+.footer-sub { margin: 12px 0 0; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-soft); }
+.footer-tagline { font-family: var(--font-head); font-style: italic; color: #dfe5f7; margin: 6px 0 0; }
 .site-footer h2 { font-family: var(--font-body); font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; font-weight: 600; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .site-footer a { color: #e3e8f0; text-decoration: none; }
@@ -308,6 +309,6 @@ p { margin: 0 0 1em; }
 /* Compact logo op kleine schermen */
 @media (max-width: 480px) {
   .header-inner { gap: 10px; }
-  .site-header .logo .logo-name { font-size: 1.08rem; letter-spacing: .1em; }
-  .site-header .logo .logo-sub { font-size: .54rem; letter-spacing: .12em; }
+  .site-header .logo { font-size: 1.18rem; }
+  .site-header .logo svg { width: 30px; height: 30px; }
 }

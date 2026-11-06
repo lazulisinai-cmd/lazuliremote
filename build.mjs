@@ -122,7 +122,8 @@ function layout({ path, title, description, body, ld = [], noindex = false }) {
   const isActive = (href) => (href === "/" ? path === "/" : path.startsWith(href));
   const nav = NAV.map(([n, href]) => `<li><a href="${href}"${isActive(href) ? ' aria-current="page"' : ""}>${n}</a></li>`).join("");
   const year = new Date().getFullYear();
-  const logo = (cls = "") => `<a class="logo${cls}" href="/" aria-label="${SITE.name}, naar de homepage"><span class="logo-name">LAZULI REMOTE</span><span class="logo-sub">Virtual Assistance · Business Support</span></a>`;
+  const LOGO_MARK = `<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path fill="#1e3a8a" d="M32 3 57 17.5v29L32 61 7 46.5v-29Z"/><path fill="#2547a6" d="M32 3 57 17.5 32 32 7 17.5Z"/><path fill="#10205a" d="M32 32v29L7 46.5v-29Z"/><circle cx="40" cy="22" r="2.6" fill="#d8b45a"/><circle cx="22" cy="40" r="1.8" fill="#d8b45a"/><circle cx="44" cy="42" r="1.4" fill="#d8b45a"/></svg>`;
+  const logo = () => `<a class="logo" href="/" aria-label="${SITE.name}, naar de homepage">${LOGO_MARK}<span>Lazuli <em>Remote</em></span></a>`;
 
   return `<!doctype html>
 <html lang="nl">
@@ -148,7 +149,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="icon" href="${v("/favicon.svg")}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="${v("/assets/css/style.css")}">
 ${[ORG, ...ld].map(jsonLd).join("\n")}
 </head>
@@ -174,6 +175,7 @@ ${body}
     <div class="footer-grid">
       <div class="footer-brand">
         ${logo()}
+        <p class="footer-sub">Virtual Assistance · Business Support</p>
         <p class="footer-tagline">Jouw rechterhand. Waar je ook onderneemt.</p>
       </div>
       <nav aria-labelledby="f-nav"><h2 id="f-nav">Menu</h2><ul>
