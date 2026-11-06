@@ -17,7 +17,7 @@ const v = (p) => p + "?v=" + createHash("md5").update(readFileSync(join(OUT, p))
 const SITE = {
   url: "https://lazuliremote.com",
   name: "Lazuli Remote",
-  email: "", // geverifieerd zakelijk e-mailadres, bv. "hallo@lazuliremote.com"
+  email: "info@lazuliremote.com", // geverifieerd zakelijk e-mailadres
   phone: "", // geverifieerd telefoonnummer of WhatsApp
 };
 

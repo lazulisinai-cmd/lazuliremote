@@ -1,6 +1,6 @@
 <?php
 // Lazuli Remote — verwerking kennismakingsformulier (PHP-hosting, bv. Hostinger)
-// TODO: vul hier het geverifieerde zakelijke e-mailadres in waarop aanvragen binnenkomen.
+// Geverifieerd zakelijk e-mailadres waarop aanvragen binnenkomen.
 const RECIPIENT = 'info@lazuliremote.com';
 const BACK = '/diensten-tarieven/';
 
