@@ -261,19 +261,9 @@ p { margin: 0 0 1em; }
 .form-note { font-size: .86rem; color: var(--muted); margin: 0; }
 
 /* Over mij */
-.about-intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.about-intro > .copy { max-width: 760px; }
 .about-intro .subtitle { font-family: var(--font-head); font-style: italic; font-size: clamp(1.15rem, 2vw, 1.35rem); color: var(--gold-text); margin: -.2em 0 1.1em; }
 .about-intro .copy p { color: var(--muted); }
-.exp-card { background: var(--navy); color: #d7deea; border-radius: var(--radius-lg); padding: clamp(28px, 4vw, 40px); position: relative; box-shadow: var(--shadow-lg); margin: 0 16px 16px 0; }
-.exp-card::before { content: ""; position: absolute; inset: 16px -16px -16px 16px; border: 1.5px solid var(--gold); border-radius: var(--radius-lg); z-index: -1; }
-.exp-card .big { font-family: var(--font-head); font-size: clamp(4.5rem, 10vw, 6rem); line-height: .9; color: var(--gold); font-weight: 600; display: block; }
-.exp-card .big-sub { font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-soft); display: block; margin: 8px 0 22px; }
-.exp-card ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(197,162,83,.35); }
-.exp-card li { padding: 12px 0; border-bottom: 1px solid rgba(197,162,83,.2); font-family: var(--font-head); font-size: 1.15rem; color: #fff; }
-.exp-card li:last-child { border-bottom: 0; padding-bottom: 0; }
-.exp-card .hand { color: var(--gold-soft); display: block; margin-top: 18px; font-size: 1.45rem; }
-.about-intro-wrap { position: relative; z-index: 0; }
-@media (max-width: 860px) { .about-intro { grid-template-columns: 1fr; } .exp-card { max-width: 440px; } }
 
 .approach { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
 .approach .copy p { color: var(--muted); }
@@ -313,14 +303,11 @@ p { margin: 0 0 1em; }
   .site-header .logo svg { width: 30px; height: 30px; }
 }
 
-/* Ervaringskaart: motto */
-.exp-card .exp-motto { margin: 0; padding-top: 20px; border-top: 1px solid rgba(201, 162, 58, .35); font-family: var(--font-hand); font-size: clamp(1.55rem, 3vw, 1.85rem); line-height: 1.25; color: var(--gold-soft); }
-.exp-card .exp-motto span { display: block; }
 
 /* WhatsApp-knop (zwevend, rechtsonder) */
-.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 20px 0 16px; border-radius: 999px; background: #25d366; color: #0b1638; font-weight: 600; text-decoration: none; box-shadow: 0 6px 20px rgba(11, 22, 56, .25); transition: transform .2s, box-shadow .2s; }
-.wa-float:hover { color: #0b1638; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(11, 22, 56, .3); }
-.wa-float svg { width: 26px; height: 26px; }
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 20px 0 16px; border-radius: 999px; background: var(--navy-3); color: #fff; border: 1.5px solid var(--gold); font-weight: 600; text-decoration: none; box-shadow: 0 6px 20px rgba(11, 22, 56, .25); transition: transform .2s, box-shadow .2s; }
+.wa-float:hover { background: var(--navy-2); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(11, 22, 56, .3); }
+.wa-float svg { width: 26px; height: 26px; color: var(--gold-soft); }
 @media (max-width: 640px) {
   .wa-float { right: 14px; bottom: 14px; width: 56px; padding: 0; justify-content: center; }
   .wa-float .wa-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
