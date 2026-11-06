@@ -144,7 +144,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:url" content="${abs(path)}">
 <meta property="og:image" content="${abs("/assets/img/werkplek-schets.webp")}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0c1c2e">
+<meta name="theme-color" content="#10205a">
 <link rel="icon" href="${v("/favicon.svg")}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
