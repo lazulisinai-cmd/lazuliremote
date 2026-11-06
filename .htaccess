@@ -16,3 +16,10 @@ ExpiresByType text/css "access plus 1 month"
 ExpiresByType application/javascript "access plus 1 month"
 ExpiresByType image/svg+xml "access plus 1 month"
 </IfModule>
+
+# HTML-pagina's altijd opnieuw controleren, zodat updates direct zichtbaar zijn
+<IfModule mod_headers.c>
+<FilesMatch "\.(html|php)$">
+Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+</IfModule>

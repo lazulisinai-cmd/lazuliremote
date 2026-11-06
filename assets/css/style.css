@@ -325,12 +325,12 @@ p { margin: 0 0 1em; }
 .mt-lg { margin-top: clamp(32px, 5vw, 56px); }
 
 /* Over mij: foto in de kop */
-.about-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
-.about-photo { margin: 0; position: relative; }
+.about-hero { display: grid; grid-template-columns: 1fr auto; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.about-photo { margin: 0 18px 18px 0; position: relative; width: clamp(240px, 26vw, 320px); }
 .about-photo::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 2px solid var(--gold-400); border-radius: var(--radius-lg); z-index: 0; }
 .about-photo img { position: relative; z-index: 1; width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
 @media (max-width: 860px) {
   .about-hero { grid-template-columns: 1fr; }
-  .about-photo { max-width: 440px; margin: 8px auto 18px; }
+  .about-photo { width: min(280px, 78vw); margin: 8px auto 26px; }
   .about-photo::before { inset: 12px -12px -12px 12px; }
 }
