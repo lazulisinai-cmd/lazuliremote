@@ -74,7 +74,7 @@ const SERVICES = [
     forWho: ["Ondernemers met een volle agenda", "Directeuren en managers van kleine bedrijven", "Consultants en zelfstandige professionals", "Ondernemers die werken over meerdere projecten of vestigingen"],
     faq: [
       ["Wat is het verschil tussen een virtuele assistent en een executive assistant?", "Een virtuele assistent ondersteunt vaak bij losse taken. Als executive assistant werk ik nauwer met je samen: ik ken je prioriteiten, bewaak je agenda en denk proactief mee over je werkprocessen."],
-      ["Kan ik je ook dagelijks inzetten?", "Ja. Met het pakket Executive spreken we vaste beschikbaarheid af, zodat je dagelijks op mij kunt rekenen."],
+      ["Kan ik je ook dagelijks inzetten?", "Ja. Met Pakket C (32 uur per maand, ongeveer 8 uur per week) kun je structureel op mij rekenen. Meer uren nodig? Dan maken we graag afspraken op maat."],
       ["Schrijf je ook namens mij?", "Ja, ik verzorg zakelijke correspondentie in jouw naam en toon, altijd binnen de afspraken die we samen maken."],
     ],
   },
@@ -103,7 +103,7 @@ const SERVICES = [
     faq: [
       ["Met welke planningstools werk je?", "Ik werk met de tools die jij al gebruikt, zoals Outlook, Google Agenda, Trello, Asana, Monday of Notion. Heb je nog geen systeem, dan help ik je bij het opzetten van een eenvoudige structuur."],
       ["Neem je ook contact op met leveranciers?", "Ja. Ik verzorg de praktische communicatie met leveranciers, zoals planningen afstemmen, bevestigingen opvragen en levermomenten opvolgen."],
-      ["Kan ik je per project inzetten?", "Zeker. Met het pakket Flexibel kun je mij per opdracht of project inschakelen."],
+      ["Kan ik je per project inzetten?", "Zeker. Met het losse uurtarief schakel je mij per opdracht of project in en betaal je alleen de uren die ik werk."],
     ],
   },
   {
@@ -159,7 +159,7 @@ const SERVICES = [
     faq: [
       ["Werk je met boekingsplatformen en channel managers?", "Ja, ik werk met de systemen die je al gebruikt. Denk aan gangbare boekingsplatformen, property management systemen en channel managers."],
       ["Beantwoord je gastvragen ook in andere talen?", "Ik verzorg gastcommunicatie in het Nederlands en Engels. Andere talen in overleg."],
-      ["Kan ik je seizoensgebonden inzetten?", "Zeker. Veel hospitality-ondernemers zetten mij extra in tijdens het hoogseizoen. Dat kan flexibel of met een vast maandpakket."],
+      ["Kan ik je seizoensgebonden inzetten?", "Zeker. Veel hospitality-ondernemers zetten mij extra in tijdens het hoogseizoen. Dat kan met het losse uurtarief of met een vast maandpakket."],
     ],
   },
 ];
@@ -170,33 +170,41 @@ const FORM_OPTIONS = [
   { label: "Andere ondersteuning", slug: "andere" },
 ];
 
+// Tarieven (alle bedragen excl. btw)
+const HOURLY = {
+  name: "Los uurtarief",
+  tag: "1 uur samenwerken",
+  amount: 70,
+  unit: "per uur excl. btw",
+  desc: "Ideaal voor losse opdrachten of om eerst kennis te maken met mijn manier van werken.",
+  items: ["Per uur berekend", "Betaling binnen 14 dagen achteraf", "Werkzaamheden in overleg"],
+};
+
 const PLANS = [
   {
-    name: "Flexibel",
-    tag: "Ondersteuning wanneer nodig",
-    desc: "Voor incidentele administratieve en organisatorische opdrachten.",
-    items: ["Inzetbaar per opdracht of project", "Administratie, planning of reisorganisatie op afroep", "Geen vaste maandelijkse verplichting", "Heldere afspraken vooraf per opdracht"],
-    price: "Tarief per uur",
-    priceNote: "Je betaalt alleen voor de uren die je afneemt.",
+    name: "Pakket A",
+    tag: "16 uur per maand samenwerken",
+    amount: 1088,
+    hours: 16,
+    items: ["Ongeveer 4 uur per week", "Betaling per maand vooraf", "Werkzaamheden in overleg", "Gratis kennismakingsgesprek"],
   },
   {
-    name: "Structureel",
-    tag: "Vaste ondersteuning per maand",
-    desc: "Voor terugkerende administratie, inboxbeheer, planning en operationele coördinatie.",
-    items: ["Vast aantal uren per maand", "Doorlopend inbox- en administratiebeheer", "Planning en operationele coördinatie", "Vaste contactmomenten en maandelijkse terugkoppeling"],
-    price: "Vast maandbedrag",
-    priceNote: "Afgestemd op het aantal uren dat je nodig hebt.",
+    name: "Pakket B",
+    tag: "24 uur per maand samenwerken",
+    amount: 1608,
+    hours: 24,
+    items: ["Ongeveer 6 uur per week", "Betaling per maand vooraf", "Werkzaamheden in overleg", "Gratis kennismakingsgesprek"],
     featured: true,
   },
   {
-    name: "Executive",
-    tag: "Persoonlijke managementondersteuning",
-    desc: "Voor ondernemers die bredere executive assistance, complexe planning en organisatorische ondersteuning nodig hebben.",
-    items: ["Persoonlijke executive assistant op afstand", "Agendabeheer en vergadervoorbereiding", "Complexe planning en reisorganisatie", "Ruime, vaste beschikbaarheid"],
-    price: "Op maat",
-    priceNote: "Samengesteld na een kennismakingsgesprek.",
+    name: "Pakket C",
+    tag: "32 uur per maand samenwerken",
+    amount: 2080,
+    hours: 32,
+    items: ["Ongeveer 8 uur per week", "Betaling per maand vooraf", "Werkzaamheden in overleg", "Gratis kennismakingsgesprek"],
   },
 ];
+const euro = (n) => n.toLocaleString("nl-NL");
 
 const STEPS = [
   ["Kennismaking", "In een vrijblijvend gesprek bespreken we jouw onderneming, je uitdagingen en waar je ondersteuning bij zoekt."],
@@ -217,7 +225,7 @@ const BENEFITS = [
 const HOME_FAQ = [
   ["Wat doet een virtuele assistent?", "Een virtuele assistent neemt op afstand administratieve en organisatorische taken van je over, zoals e-mailbeheer, agendabeheer, planning, reisorganisatie en reserveringsbeheer."],
   ["Werk je voor ondernemers in Nederland én België?", "Ja. Lazuli Remote ondersteunt zelfstandigen, ondernemers en kleine bedrijven in heel Nederland en België, volledig op afstand."],
-  ["Hoeveel uur moet ik minimaal afnemen?", "Er is geen groot minimum. Met het pakket Flexibel schakel je mij in wanneer nodig; met Structureel of Executive spreken we een vast aantal uren per maand af."],
+  ["Hoeveel uur moet ik minimaal afnemen?", "Er is geen minimum. Met het losse uurtarief schakel je mij in wanneer nodig; met Pakket A, B of C neem je vaste uren per maand af (16, 24 of 32 uur) tegen een voordeliger uurtarief."],
   ["Hoe wordt de samenwerking veilig ingericht?", "Ik werk met gedelegeerde toegang en beveiligde wachtwoordmanagers, en sluit op verzoek een verwerkersovereenkomst en geheimhoudingsverklaring af."],
   ["Hoe snel kunnen we starten?", "Na het kennismakingsgesprek en akkoord op het voorstel kunnen we doorgaans binnen één tot twee weken starten."],
 ];
@@ -329,14 +337,40 @@ function serviceCard(s, headingTag = "h3") {
 }
 
 function planCard(p, headingTag = "h3") {
+  const perHour = Math.round(p.amount / p.hours);
   return `<article class="plan${p.featured ? " plan--featured" : ""}">
-    ${p.featured ? '<span class="plan-badge">Meest gekozen</span>' : ""}
-    <${headingTag}>${esc(p.name)}</${headingTag}>
-    <p class="plan-tag">${esc(p.tag)}</p>
-    <p class="plan-desc">${esc(p.desc)}</p>
-    <p class="plan-price">${esc(p.price)}<small>${esc(p.priceNote)}</small></p>
+    ${p.featured ? '<span class="plan-badge">Populair</span>' : ""}
+    <div class="plan-head">
+      <${headingTag}>${esc(p.name)}</${headingTag}>
+      <p class="plan-tag">${esc(p.tag)}</p>
+    </div>
+    <p class="plan-amount"><span class="cur">€</span>${euro(p.amount)}</p>
+    <p class="plan-unit">per maand excl. btw<small>Dat is €${perHour} per uur</small></p>
     <ul class="check-list">${p.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
-    <a class="btn ${p.featured ? "btn--primary" : "btn--ghost"}" href="/contact/">Vraag een voorstel aan<span class="sr-only"> voor ${esc(p.name)}</span></a>
+    <a class="btn ${p.featured ? "btn--primary" : "btn--ghost"}" href="/contact/">Neem contact op<span class="sr-only"> over ${esc(p.name)}</span></a>
+    <p class="plan-foot">Voor vragen, bel of mail gerust!</p>
+  </article>`;
+}
+
+function hourlyCard(headingTag = "h3") {
+  const h = HOURLY;
+  return `<article class="plan plan--hourly">
+    <div class="plan-head">
+      <${headingTag}>${esc(h.name)}</${headingTag}>
+      <p class="plan-tag">${esc(h.tag)}</p>
+    </div>
+    <div class="hourly-price">
+      <p class="plan-amount"><span class="cur">€</span>${h.amount}</p>
+      <p class="plan-unit">${esc(h.unit)}</p>
+    </div>
+    <div class="hourly-body">
+      <p class="plan-desc">${esc(h.desc)}</p>
+      <ul class="check-list">${h.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>
+    </div>
+    <div class="hourly-cta">
+      <a class="btn btn--ghost" href="/contact/">Neem contact op<span class="sr-only"> over het losse uurtarief</span></a>
+      <p class="plan-foot">Voor vragen, bel of mail gerust!</p>
+    </div>
   </article>`;
 }
 
@@ -510,10 +544,11 @@ const page = (p) => pages.push(p);
     <div class="section-head section-head--center">
       <p class="eyebrow">Tarieven</p>
       <h2 id="tarieven-title">Een pakket dat past bij jouw onderneming</h2>
-      <p class="lead">Kies voor ondersteuning wanneer nodig, vaste uren per maand of persoonlijke managementondersteuning.</p>
+      <p class="lead">Vaste uren per maand met een voordelig uurtarief, of ondersteuning per uur wanneer jij het nodig hebt.</p>
     </div>
     <div class="plans">${PLANS.map((p) => planCard(p)).join("")}</div>
-    <p class="center mt-lg"><a href="/tarieven/">Alles over de tarieven en pakketten</a></p>
+    ${hourlyCard()}
+    <p class="center mt-lg"><a href="/tarieven/">Alles over de tarieven en veelgestelde vragen</a></p>
   </div>
 </section>
 
@@ -669,28 +704,47 @@ ${ctaBand()}`,
 {
   const bc = breadcrumbs([["Home", "/"], ["Tarieven", "/tarieven/"]]);
   const faq = faqBlock([
-    ["Hoe komt het tarief tot stand?", "Het tarief hangt af van het pakket, het aantal uren en de aard van de werkzaamheden. Na het kennismakingsgesprek ontvang je een helder voorstel zonder verrassingen."],
-    ["Kan ik wisselen van pakket?", "Ja. Groeit je behoefte aan ondersteuning, of juist niet, dan passen we het pakket in overleg aan."],
-    ["Welke diensten vallen onder de pakketten?", "Alle vijf de diensten: administratie & e-mailbeheer, executive assistant & managementondersteuning, planning & operationele coördinatie, reisorganisatie & reserveringen en hospitality & reserveringsbeheer."],
-    ["Factureer je aan bedrijven in België?", "Ja, ik werk voor ondernemers in zowel Nederland als België en factureer overeenkomstig de geldende btw-regels."],
+    ["Wat is een virtuele assistent?", "Een virtuele assistent is een professionele assistent die op afstand voor je werkt. Ik neem tijdrovende administratieve en organisatorische taken van je over en denk graag met je mee over hoe je werkdag efficiënter kan."],
+    ["Welke werkzaamheden kun je voor mij doen?", "Alles wat op afstand kan binnen mijn vijf diensten: administratie & e-mailbeheer, executive assistant & managementondersteuning, planning & operationele coördinatie, reisorganisatie & reserveringen en hospitality & reserveringsbeheer. Twijfel je of iets past? Vraag het gerust."],
+    ["Waarom zou ik een virtuele assistent inschakelen?", "Omdat je tijd overhoudt voor je klanten, je groei of gewoon voor jezelf. Je krijgt professionele ondersteuning zonder werkgeverslasten of een langdurig arbeidscontract, en je schaalt eenvoudig op of af wanneer dat nodig is."],
+    ["Wat kost een virtuele assistent?", `Een los uur kost €${HOURLY.amount} excl. btw. Met een maandpakket betaal je minder per uur: Pakket A (16 uur) kost €${euro(PLANS[0].amount)}, Pakket B (24 uur) €${euro(PLANS[1].amount)} en Pakket C (32 uur) €${euro(PLANS[2].amount)} per maand, telkens excl. btw.`],
+    ["Wat is het verschil tussen het losse uurtarief en een pakket?", "Met het losse uurtarief betaal je achteraf, binnen 14 dagen, alleen de uren die ik voor je werk. Een pakket is een vast aantal uren per maand dat je vooraf betaalt, tegen een voordeliger uurtarief en met vaste, voorspelbare ondersteuning."],
+    ["Hoe zit het met privacy, geheimhouding en beveiliging?", "Jouw gegevens zijn bij mij in vertrouwde handen. Ik werk op beveiligde apparatuur en netwerken, met gedelegeerde toegang in plaats van gedeelde wachtwoorden, en volgens de AVG/GDPR. Op verzoek sluiten we een verwerkersovereenkomst en geheimhoudingsverklaring af."],
+    ["Hoe verloopt de samenwerking?", "We starten met een gratis kennismakingsgesprek via Teams, Zoom of telefoon. Daarin bespreken we je wensen en kies je voor het losse uurtarief of een pakket. Daarna spreken we een startdatum af, ontvang je de overeenkomst ter ondertekening en ga ik op de afgesproken dag voor je aan de slag."],
+    ["Factureer je ook aan ondernemers in België?", "Ja, ik werk voor ondernemers in zowel Nederland als België en factureer volgens de geldende btw-regels."],
   ]);
+  const offerLd = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "Tarieven Lazuli Remote",
+    itemListElement: [
+      { "@type": "Offer", name: HOURLY.name, price: HOURLY.amount, priceCurrency: "EUR", valueAddedTaxIncluded: false, seller: { "@id": SITE.url + "/#organisatie" } },
+      ...PLANS.map((p) => ({ "@type": "Offer", name: `${p.name} (${p.hours} uur per maand)`, price: p.amount, priceCurrency: "EUR", valueAddedTaxIncluded: false, seller: { "@id": SITE.url + "/#organisatie" } })),
+    ],
+  };
   page({
     path: "/tarieven/",
-    title: "Tarieven | Flexibel, Structureel of Executive",
-    description: "Tarieven en pakketten van Lazuli Remote: Flexibel (ondersteuning wanneer nodig), Structureel (vaste ondersteuning per maand) en Executive (persoonlijke managementondersteuning).",
-    ld: [bc.ld, faq.ld],
+    title: "Tarieven virtuele assistent | Uurtarief & maandpakketten",
+    description: `Heldere tarieven: los uurtarief €${HOURLY.amount} of een maandpakket vanaf €${euro(PLANS[0].amount)} (16 uur). Virtuele assistent voor ondernemers in Nederland en België. Alle prijzen excl. btw.`,
+    ld: [bc.ld, faq.ld, offerLd],
     body: `
 <section class="page-hero"><div class="wrap">
   ${bc.html}
   <p class="eyebrow">Tarieven</p>
-  <h1>Pakketten en tarieven</h1>
-  <p class="lead">Drie heldere manieren om samen te werken. Elk pakket wordt afgestemd op jouw onderneming, zodat je alleen betaalt voor de ondersteuning die je echt nodig hebt.</p>
+  <h1>Heldere tarieven, zonder verrassingen</h1>
+  <p class="lead">Kies wat bij jou past: vaste uren per maand met een voordelig uurtarief, of ondersteuning per uur wanneer jij het nodig hebt. Geen langdurige contracten en altijd eerst een gratis kennismakingsgesprek.</p>
 </div></section>
-<section class="section" aria-label="Pakketten"><div class="wrap">
-  <div class="plans">${PLANS.map((p) => planCard(p, "h2")).join("")}</div>
+<section class="section" aria-labelledby="pakketten-title"><div class="wrap">
+  <div class="section-head section-head--center">
+    <h2 id="pakketten-title">Maandpakketten</h2>
+    <p class="lead">Vaste ondersteuning per maand. Hoe meer uren, hoe voordeliger het uurtarief.</p>
+  </div>
+  <div class="plans">${PLANS.map((p) => planCard(p, "h3")).join("")}</div>
+  ${hourlyCard("h3")}
+  <p class="center form-note mt-lg">Alle bedragen zijn exclusief btw. Werkzaamheden worden altijd vooraf samen afgestemd.</p>
 </div></section>
 <section class="section section--tint" aria-labelledby="faq-title"><div class="wrap">${faq.html}</div></section>
-${ctaBand("Benieuwd welk pakket bij je past?", "Plan een vrijblijvend kennismakingsgesprek en ontvang een voorstel op maat.")}`,
+${ctaBand("Benieuwd welk pakket bij je past?", "Plan een gratis kennismakingsgesprek. Samen kijken we welke ondersteuning het beste bij jouw onderneming past.")}`,
   });
 }
 
@@ -705,9 +759,17 @@ ${ctaBand("Benieuwd welk pakket bij je past?", "Plan een vrijblijvend kennismaki
     body: `
 <section class="page-hero"><div class="wrap">
   ${bc.html}
-  <p class="eyebrow">Over mij</p>
-  <h1>De rechterhand achter Lazuli Remote</h1>
-  <p class="lead">Ik help zelfstandigen, ondernemers en kleine bedrijven om overzicht en rust te creëren in hun werkdag, zodat zij zich kunnen richten op hun onderneming.</p>
+  <div class="about-hero">
+    <div>
+      <p class="eyebrow">Over mij</p>
+      <h1>De rechterhand achter Lazuli Remote</h1>
+      <p class="lead">Ik help zelfstandigen, ondernemers en kleine bedrijven om overzicht en rust te creëren in hun werkdag, zodat zij zich kunnen richten op hun onderneming.</p>
+      <div class="btn-row"><a class="btn btn--primary" href="/contact/">${CTA_PRIMARY}</a></div>
+    </div>
+    <figure class="about-photo">
+      <img src="/assets/img/lazuli-remote-over-mij.webp" width="1122" height="1402" alt="Portret van de oprichter van Lazuli Remote, met het logo, de slogan 'Jouw rechterhand, waar je ook onderneemt' en illustraties van werken op afstand." fetchpriority="high">
+    </figure>
+  </div>
 </div></section>
 <section class="section"><div class="wrap split split--wide">
   <div class="prose">
