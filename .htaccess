@@ -3,8 +3,14 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-# Afgeschafte dienst: permanent doorsturen naar het dienstenoverzicht (geen gebroken links)
-RewriteRule ^diensten/sales-crm-klantenservice/?$ /diensten/ [R=301,L]
+# Oude pagina's permanent doorsturen naar de drie nieuwe pagina's (behoud SEO-waarde, geen gebroken links)
+RewriteRule ^diensten/(administratie-emailbeheer|sales-crm-klantenservice)/?$ /diensten-tarieven/#administratie-business-support [R=301,NE,L]
+RewriteRule ^diensten/(executive-assistant|planning-coordinatie)/?$ /diensten-tarieven/#executive-operational-support [R=301,NE,L]
+RewriteRule ^diensten/(reisorganisatie-reserveringen|hospitality-support)/?$ /diensten-tarieven/#travel-hospitality-support [R=301,NE,L]
+RewriteRule ^diensten/?$ /diensten-tarieven/ [R=301,L]
+RewriteRule ^tarieven/?$ /diensten-tarieven/#tarieven [R=301,NE,L]
+RewriteRule ^contact(/bedankt)?/?$ /diensten-tarieven/#kennismaken [R=301,NE,L]
+RewriteRule ^werkwijze/?$ / [R=301,L]
 # Afsluitende slash voor mappen
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
