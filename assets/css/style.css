@@ -313,3 +313,9 @@ p { margin: 0 0 1em; }
   .wa-float .wa-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
 .site-footer { padding-bottom: 88px; }
+
+/* Btw-vermelding onder de tarieven */
+.vat-notes { max-width: 760px; margin: 26px auto 0; text-align: center; font-size: .86rem; line-height: 1.6; color: var(--muted); }
+.vat-notes p { margin: 0 0 6px; }
+.vat-notes .vat-main { font-size: .95rem; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+.vat-notes + .price-notes { margin-top: 14px; }
